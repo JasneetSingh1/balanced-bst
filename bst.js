@@ -53,27 +53,88 @@ class BST {
     let node = new Node(value);
     let current = this.root;
 
-    while (current.left != null && current.right != null) {
-    
-      if (value > current.data) {
-        
-        current = current.right;
-      } else {
-        
+    while (current != null) {
+      if (value < current.data) {
+        if (current.left === null) {
+          current.left = node;
+          return; // Exit after insertion
+        }
         current = current.left;
+      } else {
+        if (current.right === null) {
+          current.right = node;
+          return; // Exit after insertion
+        }
+        current = current.right;
       }
     }
 
     if (value < current.data) {
       current.left = node;
+      current = current.left;
     } else {
       current.right = node;
+      current = current.right;
     }
+
+    console.log(current);
+  }
+
+  
+
+  findMin(root) {
+    while (root.left != null) {
+      root = root.left;
+    }
+    return root;
+  }
+
+  deleteItem(value) {
+    let root = this.root;
+    return this.deleteItemRec(root, value);
+  }
+  deleteItemRec(roots, value) {
+    let root = roots;
+
+    if (this.root == null) return this.root;
+    else if (value < root.data)
+      root.left = this.deleteItemRec(root.left, value);
+    else if (value > root.data)
+      root.right = this.deleteItemRec(root.right, value);
+    else {
+      //Case 1
+      if (root.left == null && root.right == null) {
+        root = null;
+      }
+
+      //Case 2
+      else if (root.left == null) {
+        let temp = new Node(root.data);
+        root = root.right;
+        temp = null;
+      } else if (root.right == null) {
+        let temp = new Node(root.data);
+        root = root.left;
+        temp = null;
+      }
+
+      //Case 3
+      else {
+        let temp = new Node(this.findMin(root.right));
+        root.data = temp.date;
+        root.right = this.deleteItemRec(root.right, temp.data);
+      }
+    }
+    return root;
   }
 }
 
 const arr = [1, 2, 3, 4, 5, 6, 7];
 const bst = new BST(arr);
 const root = bst.getRoot();
-bst.insert(4);
+bst.insert(13);
+bst.insert(18);
+bst.insert(11);
+
+
 bst.prettyPrint(root);
