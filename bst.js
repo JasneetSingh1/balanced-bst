@@ -135,7 +135,7 @@ class BST {
     return null;
   }
 
-  levelOrder(){
+  levelOrder(callback){
     if(this.root == null) return;
 
     let queue = []
@@ -143,7 +143,7 @@ class BST {
 
     while(queue.length != 0){
       let current = queue.shift();
-      console.log(current.data);
+      callback(current);
       if(current.left != null) queue.push(current.left);
       if(current.right != null) queue.push(current.right);
       
@@ -166,24 +166,37 @@ class BST {
   inOrderRec(callback, root){
 
     if(root == null) return;
-    this.inOrderRec(root.left);
+    this.inOrderRec(callback,root.left);
     callback(root);
-    this.inOrderRec(root.right);
+    this.inOrderRec(callback,root.right);
   }
 
   preOrderRec(callback, root){
     if(root == null) return;
     callback(root)
-    this.preOrderRec(root.left);
-    this.preOrderRec(root.right);
+    this.preOrderRec(callback,root.left);
+    this.preOrderRec(callback,root.right);
     
   }
 
   postOrderRec(callback, root){
     if(root == null) return;
-    this.postOrderRec(root.left);
-    this.postOrderRec(root.right);
+    this.postOrderRec(callback,root.left);
+    this.postOrderRec(callback,root.right);
     callback(root)
+  }
+
+  height(node){
+
+    let count;
+    if(node == null) return - 1;
+    
+    
+    let leftCount = 1 +  this.height(node.left)
+    let rightCount = 1 + this.height(node.right)
+
+    if(leftCount > rightCount) return leftCount;
+    return rightCount;
   }
 }
 
@@ -194,5 +207,5 @@ bst.insert(13);
 bst.insert(18);
 bst.insert(11);
 
-bst.inOrder();
+console.log(bst.height(root))
 bst.prettyPrint(root);
