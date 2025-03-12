@@ -248,13 +248,24 @@ class BST {
     }
     return true;
   }
+
+  rebalance(){
+    let arr = [];
+
+    this.inOrder((node) => arr.push(node.data))
+    this.root = this.buildTree(arr)
+  }
 }
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const bst = new BST(arr);
-const root = bst.getRoot();
+let root1 = bst.getRoot();
 bst.insert(13);
 bst.insert(18);
 bst.insert(11);
 console.log(bst.isBalanced())
+bst.prettyPrint(root1);
+bst.rebalance();
+let root = bst.getRoot()
 bst.prettyPrint(root);
+console.log(bst.isBalanced())
