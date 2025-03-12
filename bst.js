@@ -68,11 +68,7 @@ class BST {
         current = current.right;
       }
     }
-
-    
   }
-
-  
 
   findMin(root) {
     while (root.left != null) {
@@ -86,8 +82,6 @@ class BST {
     return this.deleteItemRec(root, value);
   }
   deleteItemRec(root, value) {
-    
-
     if (this.root == null) return this.root;
     else if (value < root.data)
       root.left = this.deleteItemRec(root.left, value);
@@ -119,6 +113,27 @@ class BST {
     }
     return root;
   }
+
+  find(value){
+    if(this.root == null) return null;
+
+    let current = this.root;
+
+    while(current != null){
+      if(value < current.data){
+
+        current = current.left;
+      }
+      else if(value > current.data){
+        current = current.right;
+      }
+      else{
+        return current;
+      }
+    }
+
+    return null;
+  }
 }
 
 const arr = [1, 2, 3, 4, 5, 6, 7];
@@ -127,6 +142,6 @@ const root = bst.getRoot();
 bst.insert(13);
 bst.insert(18);
 bst.insert(11);
-bst.deleteItem(13)
-
+bst.deleteItem(13);
+console.log(bst.find(4))
 bst.prettyPrint(root);
