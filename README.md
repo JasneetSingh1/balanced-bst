@@ -1,8 +1,6 @@
 ## Table of Contents
 
 1. [Description](#description)
-1. [Demo](#demo)
-1. [Design](#design)
 1. [Features](#features)
 1. [Technologies Used](#technologies-used)
 1. [Project Challenges](#project-challenges)
@@ -12,47 +10,48 @@
 
 ## Description
 
-Briefly describe your project here. Include the project's purpose, your motivation for creating it, and any goals or achievements it represents.
+This project implements a Binary Search Tree (BST) in JavaScript, complete with various tree operations. The project was created to explore data structures and algorithms, focusing on tree traversal, balancing, and dynamic insertion/deletion of nodes. It also serves as a learning exercise in implementing a self-balancing BST.
 
-## Demo
-
-Provide a link to a live demo. Use gh-pages, Netlify or Vercel.
-
-Click here: [https://link-to-your-demo-goes-here/](https://link-to-your-demo-goes-here/)
-
-## Design
-
-Add a screenshot or video here. 
-I recommend https://shots.so
-
-<div align='center'>
-<img src='./path/to/your/desktop-design-screenshot.png' alt='Screenshot of desktop design'>
-<img src='../path/to/your/mobile-design-screenshot.png' alt='Screenshot of mobile design'>
-</div>
 
 ## Features
 
-- List the key features of your project.
-- Highlight any unique functionalities or approaches you took in its development.
+- **Binary Search Tree Implementation**: Create and manage a BST from an array of numbers.
+- **Tree Traversals**:
+  - Level Order
+  - Preorder
+  - Inorder
+  - Postorder
+- **Insertion & Deletion**: Add or remove nodes dynamically.
+- **Tree Balancing**: Check if the tree is balanced and rebalance it if necessary.
+- **Height & Depth Calculation**: Determine the height of the tree and depth of specific nodes.
+- **Pretty Print**: Visual representation of the tree in the console.
+
 
 ## Technologies Used
 
-List the technologies, libraries or frameworks used in the project.
+- JavaScript (ES6+)
+- Node.js (for local execution and testing)
 
 ## Project Challenges
 
-Discuss any challenges you faced during the project's development, including how you overcame them or what you learned from these experiences.
+- **Balancing the BST**: Implementing a rebalance function that restructures the tree while maintaining the BST properties.
+- **Handling Deletion Cases**: Deleting nodes required handling three cases (leaf node, node with one child, node with two children) correctly.
+- **Efficient Traversal Implementation**: Ensuring that recursive and iterative tree traversals worked as expected.
 
 ## Thoughts and Observations
 
-Share any insights or reflections you have from working on the project. This could include your thoughts on the development process, design decisions etc.
+- Using recursion made many of the operations (traversals, balancing) more intuitive.
+- Maintaining balance in a BST is crucial for efficiency—an unbalanced tree can degrade search operations to O(n) instead of O(log n).
+- Implementing pretty-print was useful for debugging and visualizing tree structure.
 
 ## Future Enhancements
 
-Outline any potential improvements or features you might want to add in the future. This shows the project's potential for growth and areas for further development.
+- **AVL or Red-Black Tree Implementation**: Convert this into a self-balancing BST that maintains balance automatically.
+- **Graphical UI**: Add a front-end visualization for the tree using D3.js.
+- **Performance Optimization**: Improve the efficiency of rebalance and traversal functions.
+- **Unit Testing**: Add Jest or Mocha tests to validate tree operations.
 
 ## Installation
-
 Provide instructions on how to install and run your project locally.
 
 Example below:
@@ -60,23 +59,18 @@ Example below:
 1. Clone the GitHub repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/your-project-name.git
+   git clone https://github.com/JasneetSingh1/balanced-bst.git
    ```
 
 2. Navigate to the project's directory:
 
    ```bash
-   cd your-project-name
+   cd balanced-bst
    ```
 
-3. Install the project's dependencies using npm:
+3. Run the test script to execute the BST functions:
 
    ```bash
-   npm install
+   node testDriver.js
    ```
 
-4. To build the project:
-
-   ```bash
-   npm run build
-   ```
