@@ -134,6 +134,21 @@ class BST {
 
     return null;
   }
+
+  levelOrder(){
+    if(this.root == null) return;
+
+    let queue = []
+    queue.push(this.root);
+
+    while(queue.length != 0){
+      let current = queue.shift();
+      console.log(current.data);
+      if(current.left != null) queue.push(current.left);
+      if(current.right != null) queue.push(current.right);
+      
+    }
+  }
 }
 
 const arr = [1, 2, 3, 4, 5, 6, 7];
@@ -143,5 +158,6 @@ bst.insert(13);
 bst.insert(18);
 bst.insert(11);
 bst.deleteItem(13);
-console.log(bst.find(4))
+bst.prettyPrint(root);
+bst.levelOrder();
 bst.prettyPrint(root);
