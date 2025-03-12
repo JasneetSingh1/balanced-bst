@@ -150,33 +150,40 @@ class BST {
     }
   }
 
-  inOrder(){
+  inOrder(callback){
     
-    return this.inOrderRec(this.root)
+    return this.inOrderRec(callback, this.root)
   }
 
-  inOrderRec(root){
+  preOrder(callback){
+    return this.preOrderRec(callback, this.root)
+  }
+
+  postOrder(callback){
+    return this.postOrderRec(callback, this.root)
+  }
+
+  inOrderRec(callback, root){
 
     if(root == null) return;
     this.inOrderRec(root.left);
-    console.log(root.data);
+    callback(root);
     this.inOrderRec(root.right);
   }
 
-  preOrder(root){
+  preOrderRec(callback, root){
     if(root == null) return;
-    console.log(root.data);
-    this.inOrderRec(root.left);
-    this.inOrderRec(root.right);
-    
+    callback(root)
+    this.preOrderRec(root.left);
+    this.preOrderRec(root.right);
     
   }
 
-  postOrder(root){
+  postOrderRec(callback, root){
     if(root == null) return;
-    this.inOrderRec(root.left);
-    this.inOrderRec(root.right);
-    console.log(root.data);
+    this.postOrderRec(root.left);
+    this.postOrderRec(root.right);
+    callback(root)
   }
 }
 
