@@ -149,6 +149,35 @@ class BST {
       
     }
   }
+
+  inOrder(){
+    
+    return this.inOrderRec(this.root)
+  }
+
+  inOrderRec(root){
+
+    if(root == null) return;
+    this.inOrderRec(root.left);
+    console.log(root.data);
+    this.inOrderRec(root.right);
+  }
+
+  preOrder(root){
+    if(root == null) return;
+    console.log(root.data);
+    this.inOrderRec(root.left);
+    this.inOrderRec(root.right);
+    
+    
+  }
+
+  postOrder(root){
+    if(root == null) return;
+    this.inOrderRec(root.left);
+    this.inOrderRec(root.right);
+    console.log(root.data);
+  }
 }
 
 const arr = [1, 2, 3, 4, 5, 6, 7];
@@ -157,7 +186,6 @@ const root = bst.getRoot();
 bst.insert(13);
 bst.insert(18);
 bst.insert(11);
-bst.deleteItem(13);
-bst.prettyPrint(root);
-bst.levelOrder();
+
+bst.inOrder();
 bst.prettyPrint(root);
