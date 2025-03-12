@@ -188,24 +188,73 @@ class BST {
 
   height(node){
 
-    let count;
+   
     if(node == null) return - 1;
     
     
-    let leftCount = 1 +  this.height(node.left)
-    let rightCount = 1 + this.height(node.right)
+    let leftCount = 1 +  this.height(node.left);
+    let rightCount = 1 + this.height(node.right);
 
-    if(leftCount > rightCount) return leftCount;
-    return rightCount;
+    return Math.max(leftCount, rightCount) ;
+  }
+
+  // depth(node){
+  
+  //   let current = this.root;
+  //   let count = 0;
+  //   while(current != null){
+      
+  //     if(node.data < current.data){
+  //       count++;
+  //       current = current.left;
+  //     }
+  //     else if(node.data > current.data){
+  //       current = current.right;
+  //       count++;
+  //     }
+  //     else{
+        
+  //       return count;
+  //     }
+  //   }
+
+  // }
+  depth(node){
+  
+   return this.depthRec(this.root, node);
+
+  }
+  depthRec(root, node){
+
+    if(root == null) return -1;
+    if(root == node) return  0;
+    
+
+    let leftCount = 1 +  this.depthRec(root.left);
+    let rightCount = 1 + this.depthRec(root.right);
+
+
+    return Math.max(leftCount, rightCount)
+  }
+
+  isBalanced(){
+    if(this.root == null) return;
+
+    let right = this.height(this.root.right);
+    let left = this.height(this.root.left);
+
+    if(Math.abs(left - right) > 1){
+      return false;
+    }
+    return true;
   }
 }
 
-const arr = [1, 2, 3, 4, 5, 6, 7];
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const bst = new BST(arr);
 const root = bst.getRoot();
 bst.insert(13);
 bst.insert(18);
 bst.insert(11);
-
-console.log(bst.height(root))
+console.log(bst.isBalanced())
 bst.prettyPrint(root);
