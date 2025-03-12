@@ -69,15 +69,7 @@ class BST {
       }
     }
 
-    if (value < current.data) {
-      current.left = node;
-      current = current.left;
-    } else {
-      current.right = node;
-      current = current.right;
-    }
-
-    console.log(current);
+    
   }
 
   
@@ -93,8 +85,8 @@ class BST {
     let root = this.root;
     return this.deleteItemRec(root, value);
   }
-  deleteItemRec(roots, value) {
-    let root = roots;
+  deleteItemRec(root, value) {
+    
 
     if (this.root == null) return this.root;
     else if (value < root.data)
@@ -120,8 +112,8 @@ class BST {
 
       //Case 3
       else {
-        let temp = new Node(this.findMin(root.right));
-        root.data = temp.date;
+        let temp = this.findMin(root.right);
+        root.data = temp.data;
         root.right = this.deleteItemRec(root.right, temp.data);
       }
     }
@@ -135,6 +127,6 @@ const root = bst.getRoot();
 bst.insert(13);
 bst.insert(18);
 bst.insert(11);
-
+bst.deleteItem(13)
 
 bst.prettyPrint(root);
